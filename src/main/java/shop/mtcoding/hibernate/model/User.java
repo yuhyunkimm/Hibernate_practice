@@ -2,6 +2,10 @@ package shop.mtcoding.hibernate.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +14,11 @@ import lombok.NoArgsConstructor;
 // getter만 만들어준다
 @NoArgsConstructor
 @Getter
+@Table(name = "user_tb")
+@Entity
 public class User {
+    // import : javax 또는 자카르타
+    @Id
     private Long id;
     private String username;
     private String password;
@@ -24,4 +32,15 @@ public class User {
         this.password = password;
         this.email = email;
     }
+
+    // 이것을 setter 의미 있는 것을 지정
+    public void update(String password, String email) {
+        this.password = password;
+        this.email = email;
+    }
+
+    // 이렇게 의미있게 지정
+    // public void passwordUpdate(String password) {
+
+    // }
 }
