@@ -3,9 +3,12 @@ package shop.mtcoding.hibernate.model;
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,18 +22,20 @@ import lombok.NoArgsConstructor;
 public class User {
     // import : javax 또는 자카르타
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 전략 : 정책성에 맞게 사용하는 것
     private Long id;
     private String username;
     private String password;
     private String email;
     private Timestamp crearedAt;
 
-    // public void save(String username, String password, String email)
-    // 생성자로 만들어 준다
-    public User(String username, String password, String email) {
+    @Builder // 선택적 매개변수의 역할 , 원하는 것을 사용
+    public User(Long id, String username, String password, String email, Timestamp crearedAt) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.crearedAt = crearedAt;
     }
 
     // 이것을 setter 의미 있는 것을 지정
